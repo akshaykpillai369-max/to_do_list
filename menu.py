@@ -64,5 +64,9 @@ class Menu:
 
                 st.error("Please fill the fields")
 
+    def show_all_tasks(self):
+
+        st.subheader("Ongoing Tasks")
+        self.db.show_tasks()
 
 
