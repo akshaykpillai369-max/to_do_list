@@ -57,7 +57,9 @@ class Menu:
                         self.db.edit_task(task_name, options, sl_no)
                         st.success("Task edited successfully")
 
-                    st.error("**That id is not found**")
+                    else: 
+
+                        st.error("**That id is not found**")
                 else:
 
                     st.error("Please fill the fields")
@@ -80,7 +82,8 @@ class Menu:
                     if self.db.checker(sl_no):
                         self.db.delete_task(sl_no)
                         st.success("Task deleted successfully")
-                    st.error("**That ID Is Not Found**")
+                    else:
+                        st.error("**That ID Is Not Found**")
 
                 else:
 

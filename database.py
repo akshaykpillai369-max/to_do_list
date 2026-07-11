@@ -80,3 +80,5 @@ class Database:
             cursor.execute(query1, (sl_no,))
 
             result = cursor.fetchall()
+
+            return result
