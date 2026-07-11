@@ -24,7 +24,7 @@ class Database:
 
             cursor = conn.cursor()
 
-            query = "insert into Tracker(title, priority_text) values(?, ?)"
+            query = "insert into Tracker(title, priority) values(?, ?)"
 
             cursor.execute(query, (title, priority_text))
 
@@ -36,7 +36,7 @@ class Database:
 
             cursor = conn.cursor()
 
-            query ="update Tracker set title, priority_text = ? , ? where id = ?"
+            query ="update Tracker set title, priority = ? , ? where id = ?"
 
             cursor.execute(query, (sl_no, title, priority_text))
 
@@ -60,8 +60,6 @@ class Database:
 
                 cursor = conn.cursor()
 
-                query ="select id, title, priority_text from Tracker"
+                query ="select id, title, priority from Tracker"
 
                 cursor.execute(query)
-
-                conn.commit()
