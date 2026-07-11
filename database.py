@@ -4,6 +4,7 @@ class Database:
 
     def __init__(self, db_name = "tracker.db"):
         self.db_name = db_name
+        self.create_table()
 
     def create_table(self):
 
