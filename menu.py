@@ -38,12 +38,31 @@ class Menu:
         submit = st.button("Edit Task")
 
         if submit:
-            if task_name and options:
-                self.db.add_task(task_name, options)
+            if task_name and options and sl_no:
+                self.db.edit_task(task_name, options)
                 st.success("Task edited successfully")
 
             else:
 
                 st.error("Please fill the fields")
+
+
+    def delete_task(self):
+
+        st.subheader("Delete Task")
+
+        sl_no = st.number_input("Enter the ID", min_value=1, step=1)
+
+        submit = st.button("Delete Task",type="primary")
+
+        if submit:
+            if sl_no:
+                self.db.delete_task(sl_no)
+                st.success("Task deleted successfully")
+
+            else:
+
+                st.error("Please fill the fields")
+
 
 
