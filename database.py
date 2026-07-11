@@ -11,8 +11,20 @@ class Database:
 
             cursor = conn.cursor()
 
-            query = "create table if not exists Tracker(id integer primary key , title text not null, priority text not null)"
+            query = "create table if not exists Tracker(id integer primary key autoincrement, title text not null, priority text not null)"
 
             cursor.execute(query)
+
+            conn.commit()
+
+    def add_task(self, title, priority_text):
+
+        with sqlite3.connect(self.db_name) as conn:
+
+            cursor = conn.cursor()
+
+            query = "insert into table(title, priority_text) values(?, ?)"
+
+            cursor.execute(query, (title, priority_text))
 
             conn.commit()
