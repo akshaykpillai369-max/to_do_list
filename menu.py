@@ -6,6 +6,12 @@ class Menu:
 
         self.db = db
 
+    def show_sidebar(self):
+
+        st.sidebar.header("To Do List")
+        decision = st.radio(label="Select from the options", options= "show all tasks, add task, edit task, delete task")
+        return decision
+
     def add_task(self):
 
         st.subheader("Add Task")
@@ -67,6 +73,7 @@ class Menu:
     def show_all_tasks(self):
 
         st.subheader("Ongoing Tasks")
+
         self.db.show_tasks()
 
 
