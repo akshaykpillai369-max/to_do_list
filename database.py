@@ -52,3 +52,15 @@ class Database:
             cursor.execute(query, (sl_no,))
 
             conn.commit()
+
+def show_tasks(self):
+
+    with sqlite3.connect(self.db_name) as conn:
+
+            cursor = conn.cursor()
+
+            query ="select id, title, priority_text from Tracker"
+
+            cursor.execute(query)
+
+            conn.commit()
