@@ -29,4 +29,14 @@ class Database:
 
             conn.commit()
 
-    
+    def edit_task(self, sl_no, title, priority_text):
+
+        with sqlite3.connect(self.db_name) as conn:
+
+            cursor = conn.cursor()
+
+            query ="update Tracker set title, priority_text = ? , ? where id = ?"
+
+            cursor.execute(query, (sl_no, title, priority_text))
+
+            conn.commit()
