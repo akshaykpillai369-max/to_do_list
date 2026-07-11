@@ -9,7 +9,7 @@ class Menu:
     def show_sidebar(self):
 
         st.sidebar.header("To Do List")
-        decision = st.radio(label="Select from the options", options= "show all tasks, add task, edit task, delete task")
+        decision = st.sidebar.radio(label="Select from the options", options= ["Show All Tasks", "Add Task", "Edit Task", "Delete Task"], index=None)
         return decision
 
     def add_task(self):
@@ -18,7 +18,7 @@ class Menu:
 
         task_name = st.text_input("Enter The Task Name")
 
-        options = st.selectbox(label="Select the urgency", options="High🔴, Medium🟡, Low🟢")
+        options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index=None)
 
         submit = st.button("Save Task")
 
@@ -39,7 +39,7 @@ class Menu:
 
         task_name = st.text_input("Enter The Task Name")
 
-        options = st.selectbox(label="Select the urgency", options="High🔴, Medium🟡, Low🟢")
+        options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index= None)
 
         submit = st.button("Edit Task")
 
