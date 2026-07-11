@@ -30,15 +30,16 @@ class Database:
 
             conn.commit()
 
-    def edit_task(self, sl_no, title, priority_text):
+    def edit_task(self, title, priority_text, sl_no):
 
         with sqlite3.connect(self.db_name) as conn:
 
             cursor = conn.cursor()
 
-            query ="update Tracker set title, priority = ? , ? where id = ?"
+            query ="update Tracker set title = ?, priority = ? where id = ?"
 
-            cursor.execute(query, (sl_no, title, priority_text))
+            cursor.execute(query, (title, priority_text, sl_no))
+
 
             conn.commit()
 
@@ -53,6 +54,8 @@ class Database:
             cursor.execute(query, (sl_no,))
 
             conn.commit()
+
+        
 
     def show_tasks(self):
 
