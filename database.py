@@ -23,8 +23,10 @@ class Database:
 
             cursor = conn.cursor()
 
-            query = "insert into table(title, priority_text) values(?, ?)"
+            query = "insert into Tracker(title, priority_text) values(?, ?)"
 
             cursor.execute(query, (title, priority_text))
 
             conn.commit()
+
+    
