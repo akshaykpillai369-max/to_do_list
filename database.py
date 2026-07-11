@@ -63,3 +63,5 @@ class Database:
                 query ="select id, title, priority from Tracker"
 
                 cursor.execute(query)
+
+                return cursor.fetchall()
