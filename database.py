@@ -53,14 +53,14 @@ class Database:
 
             conn.commit()
 
-def show_tasks(self):
+    def show_tasks(self):
 
-    with sqlite3.connect(self.db_name) as conn:
+        with sqlite3.connect(self.db_name) as conn:
 
-            cursor = conn.cursor()
+                cursor = conn.cursor()
 
-            query ="select id, title, priority_text from Tracker"
+                query ="select id, title, priority_text from Tracker"
 
-            cursor.execute(query)
+                cursor.execute(query)
 
-            conn.commit()
+                conn.commit()
