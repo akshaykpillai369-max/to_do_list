@@ -40,6 +40,7 @@ class Menu:
 
         with st.form("add_task", clear_on_submit=True):
 
+
             sl_no = st.number_input("Enter the ID", min_value=1, step=1)
 
             task_name = st.text_input("Enter The Task Name")
@@ -51,9 +52,12 @@ class Menu:
             if submit:
                 if task_name and options and sl_no:
 
-                    self.db.edit_task(task_name, options, sl_no)
-                    st.success("Task edited successfully")
+                    if self.db.checker(sl_no):
 
+                        self.db.edit_task(task_name, options, sl_no)
+                        st.success("Task edited successfully")
+
+                    st.error("**That id is not found**")
                 else:
 
                     st.error("Please fill the fields")
@@ -73,8 +77,10 @@ class Menu:
 
             if submit:
                 if sl_no:
-                    self.db.delete_task(sl_no)
-                    st.success("Task deleted successfully")
+                    if self.db.checker(sl_no):
+                        self.db.delete_task(sl_no)
+                        st.success("Task deleted successfully")
+                    st.error("**That ID Is Not Found**")
 
                 else:
 

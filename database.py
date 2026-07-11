@@ -68,3 +68,15 @@ class Database:
                 cursor.execute(query)
 
                 return cursor.fetchall()
+        
+    def checker(self, sl_no):
+
+        with sqlite3.connect(self.db_name) as conn:
+
+            cursor = conn.cursor()
+
+            query1 = "select * from Tracker where id = ?"
+
+            cursor.execute(query1, (sl_no,))
+
+            result = cursor.fetchall()
