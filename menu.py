@@ -74,6 +74,15 @@ class Menu:
 
         st.subheader("Ongoing Tasks")
 
-        self.db.show_tasks()
+        columns = st.columns(3)
+        results = self.db.show_tasks()
+
+        for index, result in results:
+
+            with columns[index % 3] :
+
+                with st.container(border= True) :
+
+                    st.markdown(f"###{results}")
 
 
