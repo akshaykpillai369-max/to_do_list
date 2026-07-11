@@ -40,3 +40,15 @@ class Database:
             cursor.execute(query, (sl_no, title, priority_text))
 
             conn.commit()
+
+    def delete_task(self, sl_no):
+
+         with sqlite3.connect(self.db_name) as conn:
+
+            cursor = conn.cursor()
+
+            query ="delete from Tracker where id = ?"
+
+            cursor.execute(query, (sl_no,))
+
+            conn.commit()
