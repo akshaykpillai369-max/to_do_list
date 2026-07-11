@@ -9,49 +9,54 @@ class Menu:
     def show_sidebar(self):
 
         st.sidebar.header("To Do List")
-        decision = st.sidebar.radio(label="Select from the options", options= ["Show All Tasks", "Add Task", "Edit Task", "Delete Task"], index=None)
+        decision = st.sidebar.radio(label="Select from the options", options= ["Show All Tasks", "Add Task", "Edit Task", "Delete Task"])
         return decision
+    
 
     def add_task(self):
 
         st.subheader("Add Task")
 
-        task_name = st.text_input("Enter The Task Name")
+        with st.form("add_task", clear_on_submit=True):
 
-        options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index=None)
+            task_name = st.text_input("Enter The Task Name")
 
-        submit = st.button("Save Task")
+            options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index=None)
 
-        if submit:
-            if task_name and options:
-                self.db.add_task(task_name, options)
-                st.success("Task added successfully")
+            submit = st.form_submit_button("Save Task")
 
-            else:
+            if submit:
+                if task_name and options:
+                    self.db.add_task(task_name, options)
+                    st.success("Task added successfully")
 
-                st.error("Please fill the fields")
+                else:
+
+                    st.error("Please fill the fields")
     
     def edit_task(self):
 
         st.subheader("Edit Task")
 
-        sl_no = st.number_input("Enter the ID", min_value=1, step=1)
+        with st.form("add_task", clear_on_submit=True):
 
-        task_name = st.text_input("Enter The Task Name")
+            sl_no = st.number_input("Enter the ID", min_value=1, step=1)
 
-        options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index= None)
+            task_name = st.text_input("Enter The Task Name")
 
-        submit = st.button("Edit Task")
+            options = st.selectbox(label="Select the urgency", options=["High🔴", "Medium🟡", "Low🟢"], index= None)
 
-        if submit:
-            if task_name and options and sl_no:
+            submit = st.form_submit_button("Edit Task")
 
-                self.db.edit_task(task_name, options, sl_no)
-                st.success("Task edited successfully")
+            if submit:
+                if task_name and options and sl_no:
 
-            else:
+                    self.db.edit_task(task_name, options, sl_no)
+                    st.success("Task edited successfully")
 
-                st.error("Please fill the fields")
+                else:
+
+                    st.error("Please fill the fields")
         
         
 
@@ -60,18 +65,20 @@ class Menu:
 
         st.subheader("Delete Task")
 
-        sl_no = st.number_input("Enter the ID", min_value=1, step=1)
+        with st.form("add_task", clear_on_submit=True):
 
-        submit = st.button("Delete Task",type="primary")
+            sl_no = st.number_input("Enter the ID", min_value=1, step=1)
 
-        if submit:
-            if sl_no:
-                self.db.delete_task(sl_no)
-                st.success("Task deleted successfully")
+            submit = st.form_submit_button("Delete Task",type="primary")
 
-            else:
+            if submit:
+                if sl_no:
+                    self.db.delete_task(sl_no)
+                    st.success("Task deleted successfully")
 
-                st.error("Please fill the fields")
+                else:
+
+                    st.error("Please fill the fields")
 
     def show_all_tasks(self):
 
@@ -80,15 +87,18 @@ class Menu:
         columns = st.columns(3)
         results = self.db.show_tasks()
 
-        for index, result in enumerate(results):
+        if results:
 
-            with columns[index % 3] :
+            for index, result in enumerate(results):
 
-                with st.container(border= True) :
+                with columns[index % 3] :
 
-                    st.markdown(f"### TITLE : {results[index][1]}")
-                    st.write(f"**Priority** : {results[index][2]}")
-                    st.write(f"**ID** : {results[index][0]}")
-        
-        
+                    with st.container(border= True) :
+
+                        st.markdown(f"### TITLE : {results[index][1]}")
+                        st.write(f"**Priority** : {results[index][2]}")
+                        st.write(f"**ID** : {results[index][0]}")
+        else:
+            st.warning("**No Tasks Added!, Consider Adding One!**")
+
 
