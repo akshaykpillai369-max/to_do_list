@@ -45,12 +45,15 @@ class Menu:
 
         if submit:
             if task_name and options and sl_no:
-                self.db.edit_task(task_name, options)
+
+                self.db.edit_task(task_name, options, sl_no)
                 st.success("Task edited successfully")
 
             else:
 
                 st.error("Please fill the fields")
+        
+        
 
 
     def delete_task(self):
@@ -77,12 +80,15 @@ class Menu:
         columns = st.columns(3)
         results = self.db.show_tasks()
 
-        for index, result in results:
+        for index, result in enumerate(results):
 
             with columns[index % 3] :
 
                 with st.container(border= True) :
 
-                    st.markdown(f"###{results}")
-
+                    st.markdown(f"### TITLE : {results[index][1]}")
+                    st.write(f"**Priority** : {results[index][2]}")
+                    st.write(f"**ID** : {results[index][0]}")
+        
+        
 
