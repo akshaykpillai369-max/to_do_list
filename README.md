@@ -12,3 +12,4 @@ logic in menu.py,
 and the app that is navigation in app.py and that's all, pretty simple
 
 Thanks for reading :)
+Have a great day.
