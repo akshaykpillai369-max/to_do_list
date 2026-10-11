@@ -7,8 +7,8 @@ And you can set each task based on its urgency, I think its kinda helpful.
 This is a nice project and helped me to learn about streamlit.
 
 I made it like this:
-Database related thing in database.py
-logic in menu.py
+Database related thing in database.py,
+logic in menu.py,
 and the app that is navigation in app.py and that's all, pretty simple
 
 Thanks for reading :)
